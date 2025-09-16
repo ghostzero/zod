@@ -44,6 +44,11 @@ abstract class BaseSchema implements SchemaContract
         return new TransformSchema($this, $transform);
     }
 
+    public function preprocess(callable $preprocess): SchemaContract
+    {
+        return new PreprocessSchema($preprocess, $this);
+    }
+
     public function isOptionalLike(): bool
     {
         return false;

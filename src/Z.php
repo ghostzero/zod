@@ -6,6 +6,7 @@ namespace GhostZero\Zod;
 use GhostZero\Zod\Contracts\Schema;
 use GhostZero\Zod\Schemas\AnySchema;
 use GhostZero\Zod\Schemas\ArraySchema;
+use GhostZero\Zod\Schemas\BaseSchema;
 use GhostZero\Zod\Schemas\BooleanSchema;
 use GhostZero\Zod\Schemas\EnumSchema;
 use GhostZero\Zod\Schemas\IntersectionSchema;
@@ -15,6 +16,7 @@ use GhostZero\Zod\Schemas\NeverSchema;
 use GhostZero\Zod\Schemas\NullSchema;
 use GhostZero\Zod\Schemas\NumberSchema;
 use GhostZero\Zod\Schemas\ObjectSchema;
+use GhostZero\Zod\Schemas\PreprocessSchema;
 use GhostZero\Zod\Schemas\RecordSchema;
 use GhostZero\Zod\Schemas\StringSchema;
 use GhostZero\Zod\Schemas\TupleSchema;
@@ -119,6 +121,23 @@ class Z
     public static function lazy(callable $factory): LazySchema
     {
         return new LazySchema($factory);
+    }
+
+    /**
+     * @param callable(mixed):mixed $preprocess
+     */
+    public static function preprocess(callable $preprocess, Schema $schema): Schema
+    {
+        if ($schema instanceof BaseSchema) {
+            return $schema->preprocess($preprocess);
+        }
+
+        return new PreprocessSchema($preprocess, $schema);
+    }
+
+    public static function coerce(): Coerce
+    {
+        return new Coerce();
     }
 }
 
