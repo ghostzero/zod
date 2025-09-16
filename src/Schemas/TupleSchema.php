@@ -99,6 +99,17 @@ class TupleSchema extends BaseSchema
 
         return $result;
     }
+
+    /**
+     * @return list<SchemaContract>
+     */
+    public function getItems(): array
+    {
+        return $this->items;
+    }
+
+    public function getRest(): ?SchemaContract
+    {
+        return $this->rest;
+    }
 }
-
-

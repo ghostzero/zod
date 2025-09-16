@@ -110,6 +110,16 @@ class ObjectSchema extends BaseSchema
         return $this;
     }
 
+    public function getShape(): array
+    {
+        return $this->shape;
+    }
+
+    public function getUnknownStrategy(): string
+    {
+        return $this->unknownStrategy;
+    }
+
     private function isOptionalShapeMember(SchemaContract $schema): bool
     {
         return $schema instanceof BaseSchema && $schema->isOptionalLike();

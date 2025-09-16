@@ -9,6 +9,10 @@ use GhostZero\Zod\Errors\ZodIssue;
 
 class ArraySchema extends BaseSchema
 {
+    private ?int $minItemsConstraint = null;
+
+    private ?int $maxItemsConstraint = null;
+
     public function __construct(private readonly SchemaContract $element)
     {
     }
@@ -38,6 +42,9 @@ class ArraySchema extends BaseSchema
 
     public function length(int $length, string $message = 'Array must contain exactly the required number of items'): self
     {
+        $this->minItemsConstraint = $length;
+        $this->maxItemsConstraint = $length;
+
         $this->checks[] = function (mixed $value, array $path) use ($length, $message): ?ZodIssue {
             if (is_array($value) && count($value) !== $length) {
                 return new ZodIssue('invalid_array_length', $message, $path, ['expected' => $length]);
@@ -49,6 +56,10 @@ class ArraySchema extends BaseSchema
 
     public function min(int $min, string $message = 'Array is too short'): self
     {
+        if ($this->minItemsConstraint === null || $min > $this->minItemsConstraint) {
+            $this->minItemsConstraint = $min;
+        }
+
         $this->checks[] = function (mixed $value, array $path) use ($min, $message): ?ZodIssue {
             if (is_array($value) && count($value) < $min) {
                 return new ZodIssue('too_small', $message, $path, ['minimum' => $min]);
@@ -60,6 +71,10 @@ class ArraySchema extends BaseSchema
 
     public function max(int $max, string $message = 'Array is too long'): self
     {
+        if ($this->maxItemsConstraint === null || $max < $this->maxItemsConstraint) {
+            $this->maxItemsConstraint = $max;
+        }
+
         $this->checks[] = function (mixed $value, array $path) use ($max, $message): ?ZodIssue {
             if (is_array($value) && count($value) > $max) {
                 return new ZodIssue('too_big', $message, $path, ['maximum' => $max]);
@@ -83,5 +98,19 @@ class ArraySchema extends BaseSchema
     {
         return $this->max($max, $message);
     }
-}
 
+    public function getElementSchema(): SchemaContract
+    {
+        return $this->element;
+    }
+
+    public function getMinItemsConstraint(): ?int
+    {
+        return $this->minItemsConstraint;
+    }
+
+    public function getMaxItemsConstraint(): ?int
+    {
+        return $this->maxItemsConstraint;
+    }
+}

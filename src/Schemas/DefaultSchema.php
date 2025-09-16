@@ -17,6 +17,11 @@ class DefaultSchema extends BaseSchema
     ) {
     }
 
+    public function getInner(): SchemaContract
+    {
+        return $this->inner;
+    }
+
     public function parse(mixed $data): mixed
     {
         $value = $this->inner->parse($data);
@@ -55,4 +60,3 @@ class DefaultSchema extends BaseSchema
         return $this;
     }
 }
-

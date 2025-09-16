@@ -69,6 +69,16 @@ class IntersectionSchema extends BaseSchema
         return parent::getDefaultValue();
     }
 
+    public function getLeft(): SchemaContract
+    {
+        return $this->left;
+    }
+
+    public function getRight(): SchemaContract
+    {
+        return $this->right;
+    }
+
     private function mergeResults(mixed $left, mixed $right): mixed
     {
         if (is_array($left) && is_array($right)) {
@@ -82,4 +92,3 @@ class IntersectionSchema extends BaseSchema
         return $right;
     }
 }
-

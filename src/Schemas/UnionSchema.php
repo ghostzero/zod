@@ -51,5 +51,12 @@ class UnionSchema extends BaseSchema
             new ZodIssue('invalid_union', 'Input did not match any union member', [], $params),
         ]);
     }
-}
 
+    /**
+     * @return list<SchemaContract>
+     */
+    public function getOptions(): array
+    {
+        return $this->options;
+    }
+}

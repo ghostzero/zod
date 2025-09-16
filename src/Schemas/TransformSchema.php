@@ -20,6 +20,11 @@ class TransformSchema extends BaseSchema
         $this->transform = $transform;
     }
 
+    public function getInner(): SchemaContract
+    {
+        return $this->inner;
+    }
+
     public function parse(mixed $data): mixed
     {
         $value = $this->inner->parse($data);

@@ -21,6 +21,11 @@ class PreprocessSchema extends BaseSchema
         $this->preprocess = $preprocess;
     }
 
+    public function getInner(): SchemaContract
+    {
+        return $this->inner;
+    }
+
     public function parse(mixed $data): mixed
     {
         $processed = ($this->preprocess)($data);

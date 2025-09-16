@@ -53,5 +53,14 @@ class RecordSchema extends BaseSchema
 
         return $result;
     }
-}
 
+    public function getValueSchema(): SchemaContract
+    {
+        return $this->valueSchema;
+    }
+
+    public function getKeySchema(): ?SchemaContract
+    {
+        return $this->keySchema;
+    }
+}

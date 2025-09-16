@@ -21,6 +21,11 @@ class OptionalSchema extends BaseSchema
         return $value;
     }
 
+    public function getInner(): SchemaContract
+    {
+        return $this->inner;
+    }
+
     public function isOptionalLike(): bool
     {
         return true;

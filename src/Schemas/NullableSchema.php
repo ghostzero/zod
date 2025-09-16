@@ -26,6 +26,11 @@ class NullableSchema extends BaseSchema
         return $value;
     }
 
+    public function getInner(): SchemaContract
+    {
+        return $this->inner;
+    }
+
     public function isOptionalLike(): bool
     {
         if ($this->inner instanceof BaseSchema) {

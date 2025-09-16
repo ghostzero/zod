@@ -22,6 +22,7 @@ use GhostZero\Zod\Schemas\StringSchema;
 use GhostZero\Zod\Schemas\TupleSchema;
 use GhostZero\Zod\Schemas\UnionSchema;
 use GhostZero\Zod\Schemas\UnknownSchema;
+use GhostZero\Zod\Serialization\JsonSchemaConverter;
 
 class Z
 {
@@ -139,5 +140,14 @@ class Z
     {
         return new Coerce();
     }
-}
 
+    /**
+     * Export a schema definition into a JSON-serialisable array.
+     *
+     * @return array<string, mixed>
+     */
+    public static function jsonSchema(Schema $schema): array
+    {
+        return JsonSchemaConverter::convert($schema);
+    }
+}

@@ -26,5 +26,9 @@ class LiteralSchema extends BaseSchema
 
         return $data;
     }
-}
 
+    public function getValue(): mixed
+    {
+        return $this->value;
+    }
+}

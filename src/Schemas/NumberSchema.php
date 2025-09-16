@@ -11,6 +11,16 @@ class NumberSchema extends BaseSchema
 {
     private bool $int = false;
 
+    private ?float $minimum = null;
+
+    private ?float $maximum = null;
+
+    private ?float $exclusiveMinimum = null;
+
+    private ?float $exclusiveMaximum = null;
+
+    private ?float $multipleOfValue = null;
+
     public function parse(mixed $data): int|float
     {
         if (!is_int($data) && !is_float($data)) {
@@ -28,6 +38,14 @@ class NumberSchema extends BaseSchema
 
     public function min(float $min, string $message = 'Number is too small'): self
     {
+        if ($this->minimum === null || $min > $this->minimum) {
+            $this->minimum = $min;
+        }
+
+        if ($this->exclusiveMinimum !== null && $this->exclusiveMinimum <= $this->minimum) {
+            $this->exclusiveMinimum = null;
+        }
+
         $this->checks[] = function (mixed $value, array $path) use ($min, $message): ?ZodIssue {
             if ((is_int($value) || is_float($value)) && $value < $min) {
                 return new ZodIssue('too_small', $message, $path, ['minimum' => $min]);
@@ -39,6 +57,14 @@ class NumberSchema extends BaseSchema
 
     public function max(float $max, string $message = 'Number is too big'): self
     {
+        if ($this->maximum === null || $max < $this->maximum) {
+            $this->maximum = $max;
+        }
+
+        if ($this->exclusiveMaximum !== null && $this->exclusiveMaximum >= $this->maximum) {
+            $this->exclusiveMaximum = null;
+        }
+
         $this->checks[] = function (mixed $value, array $path) use ($max, $message): ?ZodIssue {
             if ((is_int($value) || is_float($value)) && $value > $max) {
                 return new ZodIssue('too_big', $message, $path, ['maximum' => $max]);
@@ -62,6 +88,10 @@ class NumberSchema extends BaseSchema
 
     public function positive(string $message = 'Expected positive number'): self
     {
+        if ($this->exclusiveMinimum === null || $this->exclusiveMinimum < 0.0) {
+            $this->exclusiveMinimum = 0.0;
+        }
+
         $this->checks[] = function (mixed $value, array $path) use ($message): ?ZodIssue {
             if ((is_int($value) || is_float($value)) && $value <= 0) {
                 return new ZodIssue('too_small', $message, $path);
@@ -73,6 +103,11 @@ class NumberSchema extends BaseSchema
 
     public function nonnegative(string $message = 'Expected non-negative number'): self
     {
+        if ($this->minimum === null || $this->minimum < 0.0) {
+            $this->minimum = 0.0;
+        }
+        $this->exclusiveMinimum = null;
+
         $this->checks[] = function (mixed $value, array $path) use ($message): ?ZodIssue {
             if ((is_int($value) || is_float($value)) && $value < 0) {
                 return new ZodIssue('too_small', $message, $path);
@@ -84,6 +119,10 @@ class NumberSchema extends BaseSchema
 
     public function negative(string $message = 'Expected negative number'): self
     {
+        if ($this->exclusiveMaximum === null || $this->exclusiveMaximum > 0.0) {
+            $this->exclusiveMaximum = 0.0;
+        }
+
         $this->checks[] = function (mixed $value, array $path) use ($message): ?ZodIssue {
             if ((is_int($value) || is_float($value)) && $value >= 0) {
                 return new ZodIssue('too_big', $message, $path);
@@ -95,6 +134,11 @@ class NumberSchema extends BaseSchema
 
     public function nonpositive(string $message = 'Expected non-positive number'): self
     {
+        if ($this->maximum === null || $this->maximum > 0.0) {
+            $this->maximum = 0.0;
+        }
+        $this->exclusiveMaximum = null;
+
         $this->checks[] = function (mixed $value, array $path) use ($message): ?ZodIssue {
             if ((is_int($value) || is_float($value)) && $value > 0) {
                 return new ZodIssue('too_big', $message, $path);
@@ -109,6 +153,8 @@ class NumberSchema extends BaseSchema
         if ($multiple == 0.0) {
             throw new InvalidArgumentException('Multiple must be non-zero');
         }
+
+        $this->multipleOfValue = $multiple;
 
         $this->checks[] = function (mixed $value, array $path) use ($multiple, $message): ?ZodIssue {
             if ((is_int($value) || is_float($value))) {
@@ -132,5 +178,34 @@ class NumberSchema extends BaseSchema
         };
         return $this;
     }
-}
 
+    public function isInteger(): bool
+    {
+        return $this->int;
+    }
+
+    public function getMinimum(): ?float
+    {
+        return $this->minimum;
+    }
+
+    public function getMaximum(): ?float
+    {
+        return $this->maximum;
+    }
+
+    public function getExclusiveMinimum(): ?float
+    {
+        return $this->exclusiveMinimum;
+    }
+
+    public function getExclusiveMaximum(): ?float
+    {
+        return $this->exclusiveMaximum;
+    }
+
+    public function getMultipleOf(): ?float
+    {
+        return $this->multipleOfValue;
+    }
+}
