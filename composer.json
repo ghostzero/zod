@@ -1,0 +1,30 @@
+{
+    "name": "ghostzero/zod",
+    "description": "Zod-style schema validation with static type inference",
+    "type": "library",
+    "require-dev": {
+        "phpunit/phpunit": "^12.4"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "GhostZero\\Zod\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "GhostZero\\Zod\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "René Preuß",
+            "email": "rene@preuss.io"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "scripts": {
+        "test": "phpunit --colors=always"
+    }
+}

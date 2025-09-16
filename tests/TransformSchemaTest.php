@@ -1,0 +1,39 @@
+<?php
+declare(strict_types=1);
+
+namespace GhostZero\Zod\Tests;
+
+use GhostZero\Zod\Errors\ZodError;
+use GhostZero\Zod\Z;
+use PHPUnit\Framework\TestCase;
+
+class TransformSchemaTest extends TestCase
+{
+    public function test_transform_applies_callable(): void
+    {
+        $schema = Z::string()->transform('strtoupper');
+        $this->assertSame('HELLO', $schema->parse('hello'));
+    }
+
+    public function test_transform_refine_runs_after_transformation(): void
+    {
+        $schema = Z::string()
+            ->transform('strtoupper')
+            ->refine(fn (string $value) => $value === 'HELLO', 'Must equal HELLO');
+
+        $this->assertSame('HELLO', $schema->parse('hello'));
+
+        $this->expectException(ZodError::class);
+        $schema->parse('nope');
+    }
+
+    public function test_transform_respects_default_values(): void
+    {
+        $schema = Z::object([
+            'value' => Z::number()->default(2)->transform(fn (int $number) => $number * 10),
+        ]);
+
+        $this->assertSame(['value' => 20], $schema->parse([]));
+    }
+}
+
