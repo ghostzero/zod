@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace GhostZero\Zod\Tests;
+namespace Nyra\Zod\Tests;
 
-use GhostZero\Zod\Errors\ZodError;
-use GhostZero\Zod\Z;
+use Nyra\Zod\Errors\ZodError;
+use Nyra\Zod\Z;
 use PHPUnit\Framework\TestCase;
 
 class NumberSchemaTest extends TestCase

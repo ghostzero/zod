@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace GhostZero\Zod\Schemas;
+namespace Nyra\Zod\Schemas;
 
-use GhostZero\Zod\Contracts\Schema as SchemaContract;
-use GhostZero\Zod\Errors\ZodError;
-use GhostZero\Zod\Errors\ZodIssue;
+use Nyra\Zod\Contracts\Schema as SchemaContract;
+use Nyra\Zod\Errors\ZodError;
+use Nyra\Zod\Errors\ZodIssue;
 
 class IntersectionSchema extends BaseSchema
 {
