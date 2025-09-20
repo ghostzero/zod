@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace GhostZero\Zod\Results;
+namespace Nyra\Zod\Results;
 
-use GhostZero\Zod\Errors\ZodError;
+use Nyra\Zod\Errors\ZodError;
 
 class ParseResult
 {

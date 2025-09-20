@@ -1,31 +1,31 @@
 <?php
 declare(strict_types=1);
 
-namespace GhostZero\Zod\Serialization;
+namespace Nyra\Zod\Serialization;
 
-use GhostZero\Zod\Contracts\Schema as SchemaContract;
-use GhostZero\Zod\Schemas\AnySchema;
-use GhostZero\Zod\Schemas\ArraySchema;
-use GhostZero\Zod\Schemas\BaseSchema;
-use GhostZero\Zod\Schemas\BooleanSchema;
-use GhostZero\Zod\Schemas\DefaultSchema;
-use GhostZero\Zod\Schemas\EnumSchema;
-use GhostZero\Zod\Schemas\IntersectionSchema;
-use GhostZero\Zod\Schemas\LazySchema;
-use GhostZero\Zod\Schemas\LiteralSchema;
-use GhostZero\Zod\Schemas\NeverSchema;
-use GhostZero\Zod\Schemas\NullSchema;
-use GhostZero\Zod\Schemas\NullableSchema;
-use GhostZero\Zod\Schemas\NumberSchema;
-use GhostZero\Zod\Schemas\ObjectSchema;
-use GhostZero\Zod\Schemas\OptionalSchema;
-use GhostZero\Zod\Schemas\PreprocessSchema;
-use GhostZero\Zod\Schemas\RecordSchema;
-use GhostZero\Zod\Schemas\StringSchema;
-use GhostZero\Zod\Schemas\TransformSchema;
-use GhostZero\Zod\Schemas\TupleSchema;
-use GhostZero\Zod\Schemas\UnionSchema;
-use GhostZero\Zod\Schemas\UnknownSchema;
+use Nyra\Zod\Contracts\Schema as SchemaContract;
+use Nyra\Zod\Schemas\AnySchema;
+use Nyra\Zod\Schemas\ArraySchema;
+use Nyra\Zod\Schemas\BaseSchema;
+use Nyra\Zod\Schemas\BooleanSchema;
+use Nyra\Zod\Schemas\DefaultSchema;
+use Nyra\Zod\Schemas\EnumSchema;
+use Nyra\Zod\Schemas\IntersectionSchema;
+use Nyra\Zod\Schemas\LazySchema;
+use Nyra\Zod\Schemas\LiteralSchema;
+use Nyra\Zod\Schemas\NeverSchema;
+use Nyra\Zod\Schemas\NullSchema;
+use Nyra\Zod\Schemas\NullableSchema;
+use Nyra\Zod\Schemas\NumberSchema;
+use Nyra\Zod\Schemas\ObjectSchema;
+use Nyra\Zod\Schemas\OptionalSchema;
+use Nyra\Zod\Schemas\PreprocessSchema;
+use Nyra\Zod\Schemas\RecordSchema;
+use Nyra\Zod\Schemas\StringSchema;
+use Nyra\Zod\Schemas\TransformSchema;
+use Nyra\Zod\Schemas\TupleSchema;
+use Nyra\Zod\Schemas\UnionSchema;
+use Nyra\Zod\Schemas\UnknownSchema;
 use RuntimeException;
 use stdClass;
 

@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace GhostZero\Zod;
+namespace Nyra\Zod;
 
-use GhostZero\Zod\Schemas\PreprocessSchema;
+use Nyra\Zod\Schemas\PreprocessSchema;
 
 class Coerce
 {

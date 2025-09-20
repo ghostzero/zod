@@ -1,19 +1,28 @@
 {
-    "name": "ghostzero/zod",
+    "name": "nyra/zod",
     "description": "Zod-style schema validation with static type inference",
+    "keywords": [
+        "validation",
+        "schema",
+        "zod",
+        "php"
+    ],
     "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": "^8.2"
+    },
     "require-dev": {
         "phpunit/phpunit": "^12.4"
     },
-    "license": "MIT",
     "autoload": {
         "psr-4": {
-            "GhostZero\\Zod\\": "src/"
+            "Nyra\\Zod\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "GhostZero\\Zod\\Tests\\": "tests/"
+            "Nyra\\Zod\\Tests\\": "tests/"
         }
     },
     "authors": [
@@ -22,9 +31,12 @@
             "email": "rene@preuss.io"
         }
     ],
-    "minimum-stability": "dev",
-    "require": {},
+    "minimum-stability": "stable",
+    "prefer-stable": true,
     "scripts": {
-        "test": "phpunit --colors=always"
+        "test": "@php vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
     }
 }

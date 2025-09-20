@@ -4,17 +4,16 @@ A PHP-first port of [Zod](https://github.com/colinhacks/zod) that mirrors the fl
 
 ## Quickstart
 
-```bash
-composer install
-vendor/bin/phpunit
-```
+Add the package to your project with Composer:
 
-Add the package to your project with Composer (the library follows PSR-4 under `GhostZero\\Zod`).
+```bash
+composer require nyra/zod
+```
 
 ## Basic Usage
 
 ```php
-use GhostZero\Zod\Z;
+use Nyra\Zod\Z;
 
 $schema = Z::object([
     'id' => Z::number()->int()->positive(),
@@ -34,7 +33,7 @@ $payload = $schema->parse([
 Schemas are composed with fluent helpers. Every primitive has refinement methods, nullable/optional wrappers, unions, tuples, and objects.
 
 ```php
-use GhostZero\Zod\Z;
+use Nyra\Zod\Z;
 
 $userSchema = Z::object([
     'name' => Z::string()->min(2),
@@ -73,10 +72,10 @@ $upper = Z::string()->transform('strtoupper');
 
 ## Handling Errors
 
-`parse()` throws `GhostZero\Zod\Errors\ZodError`. Each error contains one or more `ZodIssue` entries with codes, messages, and paths.
+`parse()` throws `Nyra\Zod\Errors\ZodError`. Each error contains one or more `ZodIssue` entries with codes, messages, and paths.
 
 ```php
-use GhostZero\Zod\Errors\ZodError;
+use Nyra\Zod\Errors\ZodError;
 
 try {
     $userSchema->parse($input);

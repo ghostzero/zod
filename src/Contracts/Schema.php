@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace GhostZero\Zod\Contracts;
+namespace Nyra\Zod\Contracts;
 
-use GhostZero\Zod\Errors\ZodError;
-use GhostZero\Zod\Results\ParseResult;
+use Nyra\Zod\Errors\ZodError;
+use Nyra\Zod\Results\ParseResult;
 
 interface Schema
 {

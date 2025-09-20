@@ -1,8 +1,8 @@
 # Repository Guidelines
 
 ## Project Structure & Module Organization
-- `src/` — Library code under the `GhostZero\\Zod\\` namespace (PSR-4).
-- `tests/` — PHPUnit tests under `GhostZero\\Zod\\Tests\\` (PSR-4).
+- `src/` — Library code under the `Nyra\\Zod\\` namespace (PSR-4).
+- `tests/` — PHPUnit tests under `Nyra\\Zod\\Tests\\` (PSR-4).
 - `vendor/` — Composer-managed dependencies. Do not edit; regenerate via Composer.
 - `composer.json` — Autoload, scripts, and metadata. Run `composer dump-autoload` after adding/moving classes.
 
@@ -15,7 +15,7 @@
 ## Coding Style & Naming Conventions
 - Follow PSR-12: 4-space indentation, meaningful line length, and consistent brace style.
 - Add `declare(strict_types=1);` at the top of PHP files.
-- PSR-4 namespaces mirror folders (e.g., `src/Validation/Schema.php` → `GhostZero\\Zod\\Validation\\Schema`).
+- PSR-4 namespaces mirror folders (e.g., `src/Validation/Schema.php` → `Nyra\\Zod\\Validation\\Schema`).
 - Class names: StudlyCaps; methods/properties: camelCase. Exceptions end with `Exception`.
 
 ## Testing Guidelines

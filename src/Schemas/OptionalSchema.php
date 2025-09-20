@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace GhostZero\Zod\Schemas;
+namespace Nyra\Zod\Schemas;
 
-use GhostZero\Zod\Contracts\Schema as SchemaContract;
+use Nyra\Zod\Contracts\Schema as SchemaContract;
 
 class OptionalSchema extends BaseSchema
 {

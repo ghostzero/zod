@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace GhostZero\Zod\Schemas;
+namespace Nyra\Zod\Schemas;
 
-use GhostZero\Zod\Errors\ZodError;
-use GhostZero\Zod\Errors\ZodIssue;
+use Nyra\Zod\Errors\ZodError;
+use Nyra\Zod\Errors\ZodIssue;
 
 class StringSchema extends BaseSchema
 {
