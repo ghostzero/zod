@@ -4,12 +4,11 @@ A PHP-first port of [Zod](https://github.com/colinhacks/zod) that mirrors the fl
 
 ## Quickstart
 
-```bash
-composer install
-vendor/bin/phpunit
-```
+Add the package to your project with Composer:
 
-Add the package to your project with Composer (the library follows PSR-4 under `Nyra\\Zod`).
+```bash
+composer require nyra/zod
+```
 
 ## Basic Usage
 
