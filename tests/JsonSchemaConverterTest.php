@@ -69,4 +69,26 @@ class JsonSchemaConverterTest extends TestCase
             'required' => ['id'],
         ], $json);
     }
+
+    public function test_open_ai_schema()
+    {
+        $schema = Z::object([
+            'name' => Z::string(),
+            'summary' => Z::string()->max(100),
+            'description' => Z::string(),
+        ])->strict();
+
+        $json = Z::jsonSchema($schema);
+
+        $this->assertSame([
+            'type' => 'object',
+            'additionalProperties' => false,
+            'properties' => [
+                'name' => ['type' => 'string'],
+                'summary' => ['type' => 'string', 'maxLength' => 100],
+                'description' => ['type' => 'string'],
+            ],
+            'required' => ['name', 'summary', 'description'],
+        ], $json);
+    }
 }
