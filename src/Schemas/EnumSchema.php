@@ -26,6 +26,10 @@ class EnumSchema extends BaseSchema
 
     public function parse(mixed $data): string
     {
+        if (is_object($data) && enum_exists(get_class($data))) {
+            $data = $data->value;
+        }
+
         if (!is_string($data) || !in_array($data, $this->values, true)) {
             $expected = implode("', '", $this->values);
             throw new ZodError([

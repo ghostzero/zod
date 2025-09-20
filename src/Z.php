@@ -67,11 +67,25 @@ class Z
     }
 
     /**
-     * @param list<string> $values
+     * Accepts a list of strings or PHP enum instances. If PHP enums are provided,
+     *  their values are extracted for validation.
+     *
+     *  Example:
+     *    Z::enum(['value1', 'value2'])
+     *    Z::enum([MyEnum::Case1, MyEnum::Case2])
+     *
+     * @param list<string|object> $values List of allowed values (string or PHP enum instance)
      */
     public static function enum(array $values): EnumSchema
     {
-        return new EnumSchema($values);
+        $processed = array_map(function ($item) {
+            if (is_object($item) && enum_exists(get_class($item))) {
+                return $item->value;
+            }
+            return $item;
+        }, $values);
+
+        return new EnumSchema($processed);
     }
 
     /**

@@ -82,12 +82,12 @@ class JsonSchemaConverterTest extends TestCase
 
         $this->assertSame([
             'type' => 'object',
-            'additionalProperties' => false,
             'properties' => [
                 'name' => ['type' => 'string'],
                 'summary' => ['type' => 'string', 'maxLength' => 100],
                 'description' => ['type' => 'string'],
             ],
+            'additionalProperties' => false,
             'required' => ['name', 'summary', 'description'],
         ], $json);
     }
