@@ -59,6 +59,11 @@ class StringSchema extends BaseSchema
         return $this;
     }
 
+    public function length(int $length, string $message = 'String must be exactly of specified length'): self
+    {
+        return $this->min($length, $message)->max($length, $message);
+    }
+
     public function nonempty(string $message = 'String must be nonempty'): self
     {
         return $this->min(1, $message);

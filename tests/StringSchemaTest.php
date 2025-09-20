@@ -37,5 +37,14 @@ class StringSchemaTest extends TestCase
         $this->expectException(ZodError::class);
         $s->parse('');
     }
+
+    public function test_length(): void
+    {
+        $s = Z::string()->length(3);
+        $this->assertSame('abc', $s->parse('abc'));
+
+        $this->expectException(ZodError::class);
+        $s->parse('ab');
+    }
 }
 
